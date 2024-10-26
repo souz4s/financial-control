@@ -1,95 +1,105 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+
+import {
+  Header,
+  HeaderButton,
+  HeaderContent,
+  HeaderImage,
+} from "@/app/components/Header/Header";
+import {
+  SummaryCard,
+  Summary,
+  SummaryContent,
+} from "@/app/components/Summary/Summary";
+import {
+  Table,
+  TableHeader,
+  TableHeaderTitle,
+  TableRow,
+} from "@/app/components/Table/Table";
+
+const summaryCards = [
+  {
+    title: "Entradas",
+    src: "/Icon_feather-arrow-down.svg",
+    value: "1.529.289,52",
+  },
+  { title: "Saídas", src: "/Icon_feather-arrow-up.svg", value: "1.529.239,52" },
+  { title: "Saldo Total", backgroundColor: "#06D6A2", value: "50,00" },
+];
+
+const tableTitle = ["Descrição", "Valor", "Categoria", "Data"];
+
+const tableData = [
+  {
+    id: 1,
+    description: "Curso de NextJS",
+    value: "R$ 899,00",
+    category: "Educação",
+    date: "12/02/2022 às 13h24",
+  },
+  {
+    id: 2,
+    description: "Salário",
+    value: "R$ 7.350,00",
+    category: "Receita Fixa",
+    date: "12/02/2022 às 13h24",
+  },
+  {
+    id: 3,
+    description: "Curso de NextJS",
+    value: "R$ 899,00",
+    category: "Educação",
+    date: "12/02/2022 às 13h24",
+  },
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <>
+      <Header>
+        <HeaderContent>
+          <HeaderImage>
+            <Image src="/logo.svg" alt="ticto logo" width={186} height={34} />
+          </HeaderImage>
+          <HeaderButton>NOVA TRANSAÇÃO</HeaderButton>
+        </HeaderContent>
+      </Header>
+      <Summary>
+        <SummaryContent>
+          {summaryCards.map((card) => (
+            <SummaryCard
+              key={card.title}
+              title={card.title}
+              src={card?.src}
+              backgroundColor={card?.backgroundColor}
+              value={card.value}
             />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          ))}
+        </SummaryContent>
+      </Summary>
+      <Table>
+        <TableHeader>
+          {tableTitle.map((title) => (
+            <TableHeaderTitle key={title}>{title}</TableHeaderTitle>
+          ))}
+        </TableHeader>
+        {tableData.map((data) => (
+          <TableRow key={data.id}>
+            <p>{data.description}</p>
+            <p>{data.value}</p>
+            <p>{data.category}</p>
+            <p>{data.date}</p>
+            <Image
+              src="/feather-trash.svg"
+              alt="trash icon"
+              style={{ cursor: "pointer" }}
+              width={13}
+              height={15}
+            />
+          </TableRow>
+        ))}
+      </Table>
+    </>
   );
 }

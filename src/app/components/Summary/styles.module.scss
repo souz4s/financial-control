@@ -1,0 +1,37 @@
+.summary {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    bottom: 30px;
+}
+
+.summaryContent {
+    display: flex;
+    width: 1202px;
+    justify-content: space-between;
+}
+
+.summaryCard {
+    width: 388px;
+    height: 175px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.summaryCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 32px 0 22px;
+}
+
+.summaryCardValue {
+    margin: 30px 0 27px 35px;
+    font-size: 42px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}

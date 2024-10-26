@@ -1,0 +1,29 @@
+.header {
+    width: 100vw;
+    height: 177px;
+    background-color: #30107D;
+}
+
+.headerContent {
+ display: flex;
+ justify-content: space-around;
+ align-items: end;
+ height: 90px;
+}
+
+.headerImage {
+    margin-bottom: 5px;
+}
+
+.headerButton {
+    width: 245px;
+    height: 53px;
+    border-radius: 8px;
+    border: none;
+    background-color: #401A9B;
+    color: #B9B9B9;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
