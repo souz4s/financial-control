@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import Header from "@/app/components/Header/Header";
 import Summary from "@/app/components/Summary/Summary";
@@ -11,7 +11,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tableData, setTableData] = useState([
     {
-      id: 1,
+      id: 65165165165165,
       description: "Curso de NextJS",
       value: "R$ 899,00",
       category: "Educação",
@@ -40,10 +40,48 @@ export default function Home() {
     setTableData((prevData) => prevData.filter((item) => item.id !== id));
   };
 
+  const { totalEntrada, totalSaida, saldoTotal } = useMemo(() => {
+    let entrada = 0;
+    let saida = 0;
+
+    tableData.forEach((item) => {
+      const numericValue = parseFloat(
+        item.value.replace(/[R$\.\s]/g, "").replace(",", ".")
+      );
+
+      if (item.transactionType === "entrada") {
+        entrada += numericValue;
+      } else {
+        saida += numericValue;
+      }
+    });
+
+    const saldo = entrada - saida;
+
+    return {
+      totalEntrada: entrada.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+      totalSaida: saida.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+      saldoTotal: saldo.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+    };
+  }, [tableData]);
+
   return (
     <>
       <Header onNewTransaction={openModal} />
-      <Summary />
+      <Summary
+        totalEntrada={totalEntrada}
+        totalSaida={totalSaida}
+        saldoTotal={saldoTotal}
+      />
       <Table tableData={tableData} onDelete={deleteTransaction} />
       {isModalOpen && (
         <Modal

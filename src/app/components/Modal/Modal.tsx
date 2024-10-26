@@ -1,5 +1,5 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 import styles from "@/app/components/Modal/styles.module.scss";
 
@@ -24,6 +24,19 @@ export default function Modal({ onClose, onAddTransaction }: ModalProps) {
     name: "",
     price: "",
   });
+
+  const formatCurrency = (value: string) => {
+    const numericValue = parseFloat(value.replace(/[^0-9]/g, "")) / 100;
+    return numericValue.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  };
+
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedValue = formatCurrency(e.target.value);
+    setPrice(formattedValue);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,7 +85,7 @@ export default function Modal({ onClose, onAddTransaction }: ModalProps) {
             type="text"
             placeholder="Preço"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={handlePriceChange}
             className={styles.input}
           />
           {errors.price && <p className={styles.error}>{errors.price}</p>}

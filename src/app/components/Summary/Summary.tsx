@@ -2,17 +2,35 @@ import Image from "next/image";
 
 import styles from "@/app/components/Summary/styles.module.scss";
 
-const summaryCards = [
-  {
-    title: "Entradas",
-    src: "/Icon_feather-arrow-down.svg",
-    value: "1.529.289,52",
-  },
-  { title: "Saídas", src: "/Icon_feather-arrow-up.svg", value: "1.529.239,52" },
-  { title: "Saldo Total", backgroundColor: "#06D6A2", value: "50,00" },
-];
+interface SummaryProps {
+  totalEntrada: string;
+  totalSaida: string;
+  saldoTotal: string;
+}
 
-export default function Summary() {
+export default function Summary({
+  totalEntrada,
+  totalSaida,
+  saldoTotal,
+}: SummaryProps) {
+  const summaryCards = [
+    {
+      title: "Entradas",
+      src: "/Icon_feather-arrow-down.svg",
+      value: totalEntrada,
+    },
+    {
+      title: "Saídas",
+      src: "/Icon_feather-arrow-up.svg",
+      value: totalSaida,
+    },
+    {
+      title: "Saldo Total",
+      backgroundColor: "#06D6A2",
+      value: saldoTotal,
+    },
+  ];
+
   return (
     <div className={styles.summary}>
       <div className={styles.summaryContent}>
