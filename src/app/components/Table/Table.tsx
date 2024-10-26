@@ -21,6 +21,14 @@ interface TableProps {
 export default function Table({ tableData, onDelete }: TableProps) {
   const [selectedData, setSelectedData] = useState<TableData | null>(null);
 
+  const formatDate = (dateString: string) => {
+    const [datePart, timePart] = dateString.split(", ");
+    if (!datePart || !timePart) return dateString;
+
+    const [hours, minutes] = timePart.split(":");
+    return `${datePart} às ${hours}h${minutes}`;
+  };
+
   const handleExpand = (data: TableData) => {
     setSelectedData(data);
   };
@@ -51,7 +59,7 @@ export default function Table({ tableData, onDelete }: TableProps) {
             {data.value}
           </p>
           <p>{data.category}</p>
-          <p>{data.date}</p>
+          <p>{formatDate(data.date)}</p>
 
           <button
             className={styles.expandButton}
@@ -94,7 +102,7 @@ export default function Table({ tableData, onDelete }: TableProps) {
               <strong>Categoria:</strong> {selectedData.category}
             </p>
             <p>
-              <strong>Data:</strong> {selectedData.date}
+              <strong>Data:</strong> {formatDate(selectedData.date)}
             </p>
             <button className={styles.closeButton} onClick={closeModal}>
               Fechar
