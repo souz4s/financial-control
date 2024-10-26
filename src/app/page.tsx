@@ -16,6 +16,7 @@ export default function Home() {
       value: "R$ 899,00",
       category: "Educação",
       date: "12/02/2022 às 13h24",
+      transactionType: "entrada",
     },
   ]);
 
@@ -27,6 +28,7 @@ export default function Home() {
     value: string;
     category: string;
     date: string;
+    transactionType: string;
   }) => {
     setTableData((prevData) => [
       ...prevData,

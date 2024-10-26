@@ -10,6 +10,7 @@ interface TableData {
   value: string;
   category: string;
   date: string;
+  transactionType: string;
 }
 
 interface TableProps {
@@ -30,7 +31,15 @@ export default function Table({ tableData, onDelete }: TableProps) {
       {tableData.map((data) => (
         <div key={data.id} className={styles.tableRow}>
           <p>{data.description}</p>
-          <p>{data.value}</p>
+          <p
+            className={
+              data.transactionType === "entrada"
+                ? styles.valueGreen
+                : styles.valueRed
+            }
+          >
+            {data.value}
+          </p>
           <p>{data.category}</p>
           <p>{data.date}</p>
           <Image

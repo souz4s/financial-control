@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+
 import styles from "@/app/components/Modal/styles.module.scss";
 
 interface ModalProps {
@@ -9,6 +10,7 @@ interface ModalProps {
     value: string;
     category: string;
     date: string;
+    transactionType: string;
   }) => void;
 }
 
@@ -42,6 +44,7 @@ export default function Modal({ onClose, onAddTransaction }: ModalProps) {
       value: price,
       category: category || "Sem Categoria",
       date: new Date().toLocaleString("pt-BR"),
+      transactionType,
     };
 
     onAddTransaction(transaction);

@@ -60,6 +60,19 @@
     }
 }
 
+.valueGreen {
+    color: #06D7A5;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  
+  .valueRed {
+    color: #DB3766;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+  
+
 @media (max-width: 1024px) {
     .tableRow {
         max-width: 800px; 
