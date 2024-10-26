@@ -23,6 +23,9 @@ export default function Summary({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const isSaldoPositivo =
+    parseFloat(saldoTotal.replace(".", "").replace(",", ".")) >= 0;
+
   const summaryCards = useMemo(
     () => [
       {
@@ -37,11 +40,11 @@ export default function Summary({
       },
       {
         title: "Saldo Total",
-        backgroundColor: "#06D6A2",
+        backgroundColor: isSaldoPositivo ? "#06D6A2" : "#DB3766",
         value: saldoTotal,
       },
     ],
-    [totalEntrada, totalSaida, saldoTotal]
+    [totalEntrada, totalSaida, saldoTotal, isSaldoPositivo]
   );
 
   const getFontSize = (text: string) => {
