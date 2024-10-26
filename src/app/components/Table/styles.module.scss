@@ -64,69 +64,138 @@
     color: #06D7A5;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-  }
+}
   
-  .valueRed {
+.valueRed {
     color: #DB3766;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-  }
-  
+}
 
-@media (max-width: 1024px) {
+@media (max-width: 1250px) {
     .tableRow {
-        max-width: 800px; 
+        max-width: 90vw; 
     }
     .tableHeaderTitle:nth-child(1),
     .tableRow p:nth-child(1) {
-        width: 300px;
+        width: 30vw;
     }
     .tableHeaderTitle:nth-child(2),
     .tableRow p:nth-child(2) {
-        width: 150px;
+        width: 20vw;
     }
     .tableHeaderTitle:nth-child(3),
     .tableRow p:nth-child(3) {
-        width: 200px;
+        width: 22.5vw;
     }
     .tableHeaderTitle:nth-child(4),
     .tableRow p:nth-child(4) {
-        width: 150px;
+        width: 17.5vw;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
+    .tableHeader {
+        display: none;
+    }
+
     .tableRow {
-        max-width: 600px;
+        display: flex;
+        align-items: center;
+        padding: 10px 21px;
+        position: relative;
+        width: 90vw;
+        margin: 0 auto 20px;
+        font-size: 14px;
     }
-    .tableHeaderTitle:nth-child(1),
-    .tableRow p:nth-child(1) {
-        width: 220px;
+
+    .tableRow p:nth-child(3),
+    .tableRow p:nth-child(4) {
+        display: none;
     }
-    .tableHeaderTitle:nth-child(2),
+
+    .tableRow p:nth-child(1),
     .tableRow p:nth-child(2) {
-        width: 130px;
+        width: 45%;
+        text-align: center;
     }
-    .tableHeaderTitle:nth-child(3),
-    .tableRow p:nth-child(3) {
-        width: 150px;
-    }
-    .tableHeaderTitle:nth-child(4),
-    .tableRow p:nth-child(4) {
-        width: 100px;
+
+    .expandButton {
+        display: block;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-left: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .tableRow {
-        flex-direction: column;
-        align-items: flex-start;
-        max-width: 100%;
-        padding: 10px;
-    }
-    .tableHeaderTitle,
+@media (max-width: 425px) {
     .tableRow p {
-        width: 100%; 
-        margin-bottom: 8px;
+        font-size: 12px;
     }
+}
+
+
+@media (min-width: 801px) {
+    .expandButton {
+        display: none;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modalContent h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.modalContent p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.valueGreen {
+    color: #06D7A5;
+    font-weight: 700;
+}
+
+.valueRed {
+    color: #DB3766;
+    font-weight: 700;
+}
+
+.closeButton {
+    display: block;
+    margin-top: 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
 }
