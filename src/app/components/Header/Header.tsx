@@ -1,19 +1,30 @@
-import { PropsWithChildren } from "react";
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
 
 import styles from "@/app/components/Header/styles.module.scss";
+import Modal from "@/app/components/Modal/Modal";
 
-export function Header({ children }: PropsWithChildren) {
-  return <header className={styles.header}>{children}</header>;
-}
+export default function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-export function HeaderContent({ children }: PropsWithChildren) {
-  return <div className={styles.headerContent}>{children}</div>;
-}
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-export function HeaderImage({ children }: PropsWithChildren) {
-  return <div className={styles.headerImage}>{children}</div>;
-}
-
-export function HeaderButton({ children }: PropsWithChildren) {
-  return <button className={styles.headerButton}>{children}</button>;
+  return (
+    <>
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <div className={styles.headerImage}>
+            <Image src="/logo.svg" alt="ticto logo" width={186} height={34} />
+          </div>
+          <button className={styles.headerButton} onClick={openModal}>
+            NOVA TRANSAÇÃO
+          </button>
+        </div>
+      </header>
+      {isModalOpen && <Modal onClose={closeModal} />}
+    </>
+  );
 }
