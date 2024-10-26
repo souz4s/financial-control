@@ -5,7 +5,7 @@ import "./globals.css";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["100", "300", "400", "500", "700", "900"],
+  weight: ["400", "500", "700"],
 });
 
 const fontPoppins = FontPoppins({
