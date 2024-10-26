@@ -5,14 +5,25 @@
 }
 
 .headerContent {
- display: flex;
- justify-content: space-around;
- align-items: end;
- height: 90px;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    height: 90px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 20px 0;
+    }
 }
 
 .headerImage {
     margin-bottom: 5px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 15px;
+    }
 }
 
 .headerButton {
@@ -26,4 +37,22 @@
     font-weight: 700;
     font-size: 16px;
     cursor: pointer;
+
+    @media (max-width: 1024px) {
+        width: 200px;
+        height: 45px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        width: 180px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+        width: 160px;
+        height: 35px;
+        font-size: 12px;
+    }
 }
