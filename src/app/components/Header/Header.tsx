@@ -1,30 +1,21 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
-
 import styles from "@/app/components/Header/styles.module.scss";
-import Modal from "@/app/components/Modal/Modal";
 
-export default function Header() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+interface HeaderProps {
+  onNewTransaction: () => void;
+}
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
+export default function Header({ onNewTransaction }: HeaderProps) {
   return (
-    <>
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <div className={styles.headerImage}>
-            <Image src="/logo.svg" alt="ticto logo" width={186} height={34} />
-          </div>
-          <button className={styles.headerButton} onClick={openModal}>
-            NOVA TRANSAÇÃO
-          </button>
+    <header className={styles.header}>
+      <div className={styles.headerContent}>
+        <div className={styles.headerImage}>
+          <Image src="/logo.svg" alt="ticto logo" width={186} height={34} />
         </div>
-      </header>
-      {isModalOpen && <Modal onClose={closeModal} />}
-    </>
+        <button className={styles.headerButton} onClick={onNewTransaction}>
+          NOVA TRANSAÇÃO
+        </button>
+      </div>
+    </header>
   );
 }

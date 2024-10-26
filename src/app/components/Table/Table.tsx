@@ -4,31 +4,20 @@ import styles from "@/app/components/Table/styles.module.scss";
 
 const tableTitle = ["Descrição", "Valor", "Categoria", "Data"];
 
-const tableData = [
-  {
-    id: 1,
-    description: "Curso de NextJS",
-    value: "R$ 899,00",
-    category: "Educação",
-    date: "12/02/2022 às 13h24",
-  },
-  {
-    id: 2,
-    description: "Salário",
-    value: "R$ 7.350,00",
-    category: "Receita Fixa",
-    date: "12/02/2022 às 13h24",
-  },
-  {
-    id: 3,
-    description: "Curso de NextJS",
-    value: "R$ 899,00",
-    category: "Educação",
-    date: "12/02/2022 às 13h24",
-  },
-];
+interface TableData {
+  id: number;
+  description: string;
+  value: string;
+  category: string;
+  date: string;
+}
 
-export default function Table() {
+interface TableProps {
+  tableData: TableData[];
+  onDelete: (id: number) => void;
+}
+
+export default function Table({ tableData, onDelete }: TableProps) {
   return (
     <div className={styles.table}>
       <div className={styles.tableHeader}>
@@ -50,6 +39,7 @@ export default function Table() {
             style={{ cursor: "pointer" }}
             width={13}
             height={15}
+            onClick={() => onDelete(data.id)}
           />
         </div>
       ))}

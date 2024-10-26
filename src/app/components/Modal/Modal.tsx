@@ -1,27 +1,50 @@
 import { useState } from "react";
 import Image from "next/image";
-
 import styles from "@/app/components/Modal/styles.module.scss";
 
 interface ModalProps {
   onClose: () => void;
+  onAddTransaction: (transaction: {
+    description: string;
+    value: string;
+    category: string;
+    date: string;
+  }) => void;
 }
 
-export default function Modal({ onClose }: ModalProps) {
+export default function Modal({ onClose, onAddTransaction }: ModalProps) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [transactionType, setTransactionType] = useState("entrada");
   const [category, setCategory] = useState("");
 
+  const [errors, setErrors] = useState({
+    name: "",
+    price: "",
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      name,
-      price,
-      transactionType,
-      category,
-    });
-    onClose();
+
+    const newErrors = {
+      name: name ? "" : "O nome é obrigatório.",
+      price: price ? "" : "O preço é obrigatório.",
+    };
+
+    setErrors(newErrors);
+
+    if (newErrors.name || newErrors.price) {
+      return;
+    }
+
+    const transaction = {
+      description: name,
+      value: price,
+      category: category || "Sem Categoria",
+      date: new Date().toLocaleString("pt-BR"),
+    };
+
+    onAddTransaction(transaction);
   };
 
   return (
@@ -40,6 +63,7 @@ export default function Modal({ onClose }: ModalProps) {
             onChange={(e) => setName(e.target.value)}
             className={styles.input}
           />
+          {errors.name && <p className={styles.error}>{errors.name}</p>}
 
           <input
             type="text"
@@ -48,6 +72,7 @@ export default function Modal({ onClose }: ModalProps) {
             onChange={(e) => setPrice(e.target.value)}
             className={styles.input}
           />
+          {errors.price && <p className={styles.error}>{errors.price}</p>}
 
           <div className={styles.transactionType}>
             <button
